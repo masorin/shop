@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// !example Route Home
+Route::get('/home', function(){
+  echo 'Home';
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,4 +34,10 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 });
